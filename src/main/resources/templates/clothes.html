@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/head::head"></head>
+
+
+<body>
+
+<div th:replace="fragments/navbar :: navbar">
+    Navbar
+</div>
+
+
+<div class="container-fluid">
+    <h2 class="text-center text-white mt-5">All Clothes</h2>
+    <div class="clothes row mx-auto d-flex flex-row justify-content-center">
+        <div th:each="o : ${clothes}" th:object="${o}" class="clothes card col-sm-6 col-md-3  col-lg-2 m-1 p-0">
+            <div class="card-img-top-wrapper">
+                <img class="card-img-top" th:src="*{imageUrl}" alt="Clothes image">
+            </div>
+            <div class="card-body pb-1">
+                <h5 class="card-title" th:text="*{engine} + ' '  + *{brand} + ' '  + *{model}">
+                    Clothes year Brand name Model name</h5>
+            </div>
+            <ul class="clothes-details list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="card-text"><span th:text="|Price: *{price} BGN|">Price</span></div>
+                    <div class="card-text"><span th:text="|Gender: *{engine}|">Gender type</span></div>
+                    <div class="card-text"><span th:text="|Description: *{description}|">Description</span></div>
+                </li>
+            </ul>
+            <div class="card-body">
+                <a class="card-link" th:href="@{/clothes/{id}/details(id=*{id})}">Details</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <footer> </footer>
+</div>
+
+</body>
+</html>
